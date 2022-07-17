@@ -1,0 +1,8 @@
+co\unicauca\sistemamedicion\microkernel\common\entities\ItemMedicionElemento.class
+co\unicauca\sistemamedicion\microkernel\common\entities\SensorCamara.class
+co\unicauca\sistemamedicion\microkernel\common\entities\Disparador.class
+co\unicauca\sistemamedicion\microkernel\common\entities\ProcesoElemento.class
+co\unicauca\sistemamedicion\microkernel\common\entities\Actuador.class
+co\unicauca\sistemamedicion\microkernel\common\entities\Sensor.class
+co\unicauca\sistemamedicion\microkernel\common\interfaces\IPublisherPlugin.class
+co\unicauca\sistemamedicion\microkernel\common\interfaces\IProductProcessPlugin.class

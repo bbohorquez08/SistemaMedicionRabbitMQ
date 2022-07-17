@@ -1,0 +1,4 @@
+co\unicauca\subscriber\processProducts\presentation\DeliveryOffice.class
+co\unicauca\subscriber\processProducts\presentation\DeliveryOffice$1.class
+co\unicauca\subscriber\processProducts\infra\ISubscriber.class
+co\unicauca\subscriber\processProducts\infra\RabbitListener.class

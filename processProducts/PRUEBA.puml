@@ -1,0 +1,34 @@
+@startuml
+annotation java.lang.Override
+class co.unicauca.subscriber.deliveryproducts.infra.RabbitListener
+class com.rabbitmq.client.Channel
+class com.rabbitmq.client.Connection
+class com.rabbitmq.client.ConnectionFactory
+class com.rabbitmq.client.DeliverCallback
+class java.io.File
+class java.io.FileInputStream
+class java.io.IOException
+class java.io.UnsupportedEncodingException
+class java.net.URLDecoder
+class java.util.Properties
+class java.util.concurrent.TimeoutException
+class java.util.logging.Level
+class java.util.logging.Logger
+interface co.unicauca.subscriber.deliveryproducts.infra.ISubscriber
+interface java.lang.Runnable
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.lang.Override
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> com.rabbitmq.client.Channel
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> com.rabbitmq.client.Connection
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> com.rabbitmq.client.ConnectionFactory
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> com.rabbitmq.client.DeliverCallback
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.io.File
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.io.FileInputStream
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.io.IOException
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.io.UnsupportedEncodingException
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.net.URLDecoder
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.util.Properties
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.util.concurrent.TimeoutException
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.util.logging.Level
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener ..> java.util.logging.Logger
+co.unicauca.subscriber.deliveryproducts.infra.RabbitListener --|> java.lang.Runnable
+@enduml

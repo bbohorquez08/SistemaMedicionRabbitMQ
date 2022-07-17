@@ -1,0 +1,8 @@
+@startuml
+class co.unicauca.sistemamedicion.microkernel.core.app.ProcessProductApplication
+class co.unicauca.sistemamedicion.microkernel.core.plugin.manager.PluginManager
+class co.unicauca.sistemamedicion.microkernel.core.presentation.GUISendProduct
+class java.io.File
+class java.util.logging.Level
+class java.util.logging.Logger
+@enduml
