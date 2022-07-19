@@ -1,0 +1,8 @@
+co\unicauca\subscriber\processProduct\acces\RepositoryMySql.class
+co\unicauca\subscriber\processProduct\acces\ConnectDB.class
+co\unicauca\subscriber\processProducts\presentation\DeliveryOffice.class
+co\unicauca\subscriber\processProduct\model\Measurement.class
+co\unicauca\subscriber\processProducts\infra\ISubscriber.class
+co\unicauca\subscriber\processProducts\infra\RabbitListener.class
+co\unicauca\subcriber\processProduct\service\ServiceProcessProduct.class
+co\unicauca\subscriber\processProducts\presentation\DeliveryOffice$1.class
