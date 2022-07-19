@@ -10,6 +10,7 @@ import co.unicauca.subscriber.processProducts.infra.ISubscriber;
 import co.unicauca.subscriber.processProducts.infra.RabbitListener;
 import com.google.gson.Gson;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,8 +25,8 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
     public DeliveryOffice() {
         initComponents();
         Runnable subscriber = new RabbitListener(this);
-        modelList = new DefaultListModel();
-        jList1.setModel(modelList);
+        //modelList = new DefaultListModel();
+        //jList1.setModel(modelList);
         new Thread(subscriber).start();
     }
 
@@ -38,19 +39,30 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jScrollPaneInfoDatosProductos = new javax.swing.JScrollPane();
+        jTableInfoElementProcess = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Productos Optimos");
-        getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setViewportView(jList1);
+        jTableInfoElementProcess.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jPanel1.add(jScrollPane1);
+            },
+            new String [] {
+                "Producto", "Ancho Real(cm)", "Alto Real(cm)", "Peso Real(kg)", "Ancho Ideal(cm)", "Alto Ideal(cm)", "Peso Ideal(kg)", "Tipo", "Estado"
+            }
+        ));
+        jScrollPaneInfoDatosProductos.setViewportView(jTableInfoElementProcess);
+
+        jPanel1.add(jScrollPaneInfoDatosProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 810, -1));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Productos Procesados");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -99,21 +111,44 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         //smodelList.addElement(elemento.getTipo());
         //modelList.addElement(elemento.getNombre());
         //modelList.addElement(elemento.getEstado());
-        modelList.addElement(msg);
-            System.out.println("es: "+msg);
+        //modelList.addElement(msg);
+        //System.out.println("es: "+msg);
             //System.out.println("elemento: "+elemento.getEstado());
-        jList1.paintImmediately(jList1.getBounds());
+        //jList1.paintImmediately(jList1.getBounds());
        // Product product = gson.fromJson(msg, Product.class);
 //        modelList.addElement(product.getName());
-
+        String[] partes = msg.split(" ");
+            for (int i = 0; i < partes.length; i++) {
+                System.out.println("es: "+partes[i]);
+            }
+        cargarTabla(partes);
+        
+        
+    }
+    
+    public void cargarTabla(String [] partes){
+        Object [] fila = new Object[9];
+        fila[0]=partes[0];
+        fila[1]=partes[1];
+        fila[2]=partes[2];
+        fila[3]=partes[3];
+        fila[4]=partes[4];
+        fila[5]=partes[5];
+        fila[6]=partes[6];
+        fila[7]=partes[7];
+        fila[8]=partes[8];
+        
+        DefaultTableModel modelo =(DefaultTableModel) this.jTableInfoElementProcess.getModel(); 
+        modelo.addRow(fila); 
+        this.jTableInfoElementProcess.setModel(modelo);
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneInfoDatosProductos;
+    private javax.swing.JTable jTableInfoElementProcess;
     // End of variables declaration//GEN-END:variables
 
 

@@ -18,7 +18,7 @@ public class ProcessService{
     
     public ProcesoElemento ProcessProduct(ProcesoElemento elemento, float altura, 
             float ancho, float peso) throws Exception{
-        System.out.println("LLEGAAAA");
+        
         String processPlugin = elemento.getIdProcess();
         PluginManager manager = PluginManager.getInstance();
         IProductProcessPlugin plugin = manager.getProductProcessPlugin(processPlugin);

@@ -50,8 +50,6 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPaneInfoDatosOptimos = new javax.swing.JScrollPane();
-        jTableInfoElementOptimos = new javax.swing.JTable();
         jScrollPaneInfoElementDefectuosos = new javax.swing.JScrollPane();
         jTableInfoElementDefectuosos = new javax.swing.JTable();
         jLabelAltura = new javax.swing.JLabel();
@@ -77,16 +75,6 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
         jLabel3.setText("Latas en estado Optimo");
 
         jLabel4.setText("Latas en estado defectuoso");
-
-        jTableInfoElementOptimos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Alto(cm)", "Ancho(cm)", "Peso(kg)", "Estado", "Tipo"
-            }
-        ));
-        jScrollPaneInfoDatosOptimos.setViewportView(jTableInfoElementOptimos);
 
         jTableInfoElementDefectuosos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,12 +139,11 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
                         .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelCentralLayout.createSequentialGroup()
                                 .addGap(46, 46, 46)
-                                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPaneInfoDatosOptimos, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelCentralLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabelAltura)))
+                        .addGap(48, 48, 48)
                         .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,9 +229,7 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneInfoDatosOptimos, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPaneInfoElementDefectuosos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPaneInfoElementDefectuosos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -388,8 +373,17 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
 //            Product selectedProduct = products.get(this.jComboBox1.getSelectedIndex());
 //            procesoRetornado = products.get(procesoRetornado.getElemento().getEstado());
             Gson gson = new Gson();
-            String info = objItemMedicion.getTipo()+ " " + objItemMedicion.getNombre()
-                    + " " + procesoRetornado.getElemento().getEstado();
+//            String info = objItemMedicion.getTipo()+ " " + objItemMedicion.getNombre()
+//                    + " " + procesoRetornado.getElemento().getEstado();
+            String info = procesoRetornado.getElemento().getNombre()+ " " +
+                    procesoRetornado.getElemento().getLstValoresReales().get(1)+ " " +
+                    procesoRetornado.getElemento().getLstValoresReales().get(0)+ " " +
+                    procesoRetornado.getElemento().getLstValoresReales().get(2)+ " " +
+                    procesoRetornado.getElemento().getLstValoresIdeales().get(1)+ " " +
+                    procesoRetornado.getElemento().getLstValoresIdeales().get(0)+ " " +
+                    procesoRetornado.getElemento().getLstValoresIdeales().get(2)+ " " +
+                    procesoRetornado.getElemento().getTipo()+ " " +
+                    procesoRetornado.getElemento().getEstado();
 
             //String info = jComboBoxTipoProducto.getSelectedItem().toString();
             //System.out.println("INFO: "+info);
@@ -426,10 +420,8 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelPeso;
     private javax.swing.JLabel jLabelTipoProducto;
     private javax.swing.JPanel jPanelCentral;
-    private javax.swing.JScrollPane jScrollPaneInfoDatosOptimos;
     private javax.swing.JScrollPane jScrollPaneInfoElementDefectuosos;
     private javax.swing.JTable jTableInfoElementDefectuosos;
-    private javax.swing.JTable jTableInfoElementOptimos;
     private javax.swing.JTextField jtxtAltura;
     private javax.swing.JTextField jtxtAncho;
     private javax.swing.JTextField jtxtCodigoProducto;
