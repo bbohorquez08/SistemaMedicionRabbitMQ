@@ -57,6 +57,7 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         jScrollPaneInfoDatosProductos = new javax.swing.JScrollPane();
         jTableInfoElementProcess = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,12 +73,16 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         ));
         jScrollPaneInfoDatosProductos.setViewportView(jTableInfoElementProcess);
 
-        jPanel1.add(jScrollPaneInfoDatosProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 810, 210));
+        jPanel1.add(jScrollPaneInfoDatosProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 810, 180));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("TABLA DE LOS PRODUCTOS PROCESADOS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, -1));
+
+        jButtonSalir.setBackground(new java.awt.Color(194, 47, 47));
+        jButtonSalir.setText("Salir");
+        jPanel1.add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 230, 60, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -199,6 +204,7 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPaneInfoDatosProductos;
