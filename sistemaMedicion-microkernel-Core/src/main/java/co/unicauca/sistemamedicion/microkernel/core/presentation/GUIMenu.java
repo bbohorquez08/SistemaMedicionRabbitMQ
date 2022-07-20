@@ -30,46 +30,45 @@ public class GUIMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopEscritorio = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        jLabeltTitulo = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemIniciarSimulacion = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItemSalir = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItemAyuda = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopEscritorio.setMinimumSize(new java.awt.Dimension(400, 600));
-        jDesktopEscritorio.setPreferredSize(new java.awt.Dimension(1200, 700));
+        jLabeltTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        jLabeltTitulo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabeltTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabeltTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabeltTitulo.setText("SIMULACIÓN DE UN SISTEMA DE MEDICIÓN DE PRODUCTOS");
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 255));
-        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SIMULADOR SISTEMA DE MEDECIÓN DE LATAS DE CERVEZA");
-        jLabel1.setToolTipText("");
-
-        jDesktopEscritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopEscritorio.setLayer(jLabeltTitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopEscritorioLayout = new javax.swing.GroupLayout(jDesktopEscritorio);
         jDesktopEscritorio.setLayout(jDesktopEscritorioLayout);
         jDesktopEscritorioLayout.setHorizontalGroup(
             jDesktopEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopEscritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jDesktopEscritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabeltTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jDesktopEscritorioLayout.setVerticalGroup(
             jDesktopEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopEscritorioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(659, Short.MAX_VALUE))
+                .addComponent(jLabeltTitulo)
+                .addContainerGap(372, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jDesktopEscritorio, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(jDesktopEscritorio, java.awt.BorderLayout.CENTER);
 
         jMenuBar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -100,7 +99,18 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenuBar2.add(jMenu3);
 
         jMenu6.setText("Ayuda");
+
+        jMenuItemAyuda.setText("Ayuda");
+        jMenu6.add(jMenuItemAyuda);
+
         jMenuBar2.add(jMenu6);
+
+        jMenu1.setText("Salir");
+
+        jMenuItem1.setText("Salir");
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar2.add(jMenu1);
 
         setJMenuBar(jMenuBar2);
 
@@ -119,7 +129,7 @@ public class GUIMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         GUIItemMedicion objGUIItemMedicion = new GUIItemMedicion();
         objGUIItemMedicion.setMaximizable(true);
-        objGUIItemMedicion.setLocation(90, 50);
+        objGUIItemMedicion.setLocation(60, 50);
         this.jDesktopEscritorio.add(objGUIItemMedicion);
         objGUIItemMedicion.show();                             
         
@@ -132,10 +142,13 @@ public class GUIMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopEscritorio;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabeltTitulo;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemAyuda;
     private javax.swing.JMenuItem jMenuItemIniciarSimulacion;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JPopupMenu.Separator jSeparator1;

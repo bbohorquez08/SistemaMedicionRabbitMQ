@@ -4,7 +4,9 @@ package co.unicauca.subscriber.processProduct.acces;
 import co.unicauca.subscriber.processProduct.model.Measurement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /**
@@ -20,9 +22,13 @@ public class RepositoryMySql {
     public RepositoryMySql(){
         
     } 
-    
+    /**
+     * Agrega una medición en la base de datos 
+     * @param objM medición realiazada 
+     * @return 1 en caso de guardar exitosamente 0 en caso contrario
+     * @throws SQLException  capturamos posibles excepciones 
+     */
     public int addMeasurement(Measurement objM) throws SQLException{
-        
         Connection con  = null;
         PreparedStatement stmt;
         String sql;
@@ -54,6 +60,36 @@ public class RepositoryMySql {
         }
         
         return 0; 
+    }
+    public ArrayList<Measurement> getMeasurements()throws SQLException{
+        Connection con  = null;
+        PreparedStatement stmt;
+        String sql;
+        ResultSet result;
+        ArrayList<Measurement> auxListMeasurements = new ArrayList<>();
+        Measurement objMeasurement = null;
+        try {
+            con = connect.getConexion();
+            sql = "SELECT * FROM Medicion ORDER BY nombreProducto ASC;";
+            stmt = con.prepareStatement(sql);
+            result = stmt.executeQuery(sql);
+            if(result.next()) { 
+                do{
+                    objMeasurement = new Measurement(result.getInt("idMedicion"), result.getString("nombreProducto"),
+                        result.getFloat("anchoReal"),result.getFloat("altoReal"), result.getFloat("pesoReal"), 
+                        result.getFloat("anchoIdeal"), result.getFloat("altoIdeal"), result.getFloat("pesoIdeal"), 
+                        result.getString("tipoProducto"), result.getString("estadoProducto"));         
+                    auxListMeasurements.add(objMeasurement);
+                }while(result.next());
+            }
+            return auxListMeasurements;
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta");
+            System.out.println(e);
+        }finally{
+            con.close();
+        }
+        return auxListMeasurements;
     }
     
 }

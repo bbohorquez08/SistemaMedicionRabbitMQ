@@ -7,16 +7,23 @@ package co.unicauca.subscriber.processProducts.presentation;
 
 import co.unicauca.sistemamedicion.microkernel.common.entities.ItemMedicionElemento;
 import co.unicauca.subcriber.processProduct.service.ServiceProcessProduct;
+import co.unicauca.subscriber.processProduct.acces.ConnectDB;
 import co.unicauca.subscriber.processProduct.model.Measurement;
 import co.unicauca.subscriber.processProducts.infra.ISubscriber;
 import co.unicauca.subscriber.processProducts.infra.RabbitListener;
 import com.google.gson.Gson;
+import java.awt.Color;
+import static java.lang.System.exit;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -25,15 +32,16 @@ import javax.swing.table.DefaultTableModel;
 public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
 
     DefaultListModel modelList;
+    ServiceProcessProduct objService;
     /**
      * Creates new form DeliveryOffice
      */
     public DeliveryOffice() {
         initComponents();
         Runnable subscriber = new RabbitListener(this);
-        //modelList = new DefaultListModel();
-        //jList1.setModel(modelList);
+        this.objService = new ServiceProcessProduct();
         new Thread(subscriber).start();
+
     }
 
     /**
@@ -64,10 +72,11 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         ));
         jScrollPaneInfoDatosProductos.setViewportView(jTableInfoElementProcess);
 
-        jPanel1.add(jScrollPaneInfoDatosProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 810, -1));
+        jPanel1.add(jScrollPaneInfoDatosProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 810, 210));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Productos Procesados");
+        jLabel1.setText("TABLA DE LOS PRODUCTOS PROCESADOS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -105,29 +114,29 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliveryOffice().setVisible(true);
+                DeliveryOffice delivery = new DeliveryOffice();
+                delivery.setVisible(true);
+                //Cargamos la información de la base de datos
+                try {
+                    delivery.obtenerMediciones();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(DeliveryOffice.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
-    
-        @Override
+    @Override
     public void onMessage(String msg) {
-        Gson gson = new Gson();
-        //ItemMedicionElemento elemento = gson.fromJson(msg, ItemMedicionElemento.class);
-        String auxMsg = msg.replaceAll(" ", ",");
-//        Measurement objM = gson.fromJson(msg, Measurement.class);
-//            System.out.println("auxMsg "+auxMsg);
-       // Product product = gson.fromJson(msg, Product.class);
-       /**
-        * Guardo en la base de datos 
-        */
-       ServiceProcessProduct objService = new ServiceProcessProduct();
-       
-       Measurement objM = new Measurement();
-       String partes1[] = auxMsg.split(",");
-            for (int i = 0; i < partes1.length; i++) {
-                System.out.println("v: "+ partes1[i]);
-            }
+        System.out.println("msg: " + msg);
+        //Todo hago split al template de string que llega como mensaje 
+        String[] partes = msg.split(",");
+        //Todo construyo el objeto 
+        Measurement objM = new Measurement(0, partes[0], Float.parseFloat(partes[1]),
+                Float.parseFloat(partes[2]), Float.parseFloat(partes[3]), Float.parseFloat(partes[4]),
+                Float.parseFloat(partes[5]), Float.parseFloat(partes[6]), partes[7], 
+                partes[8]);
+        // Guardo en la base de datos 
         try {
             int response = 0;
             response = objService.addMeasurement(objM);
@@ -137,17 +146,10 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         } catch (SQLException ex) {
             Logger.getLogger(DeliveryOffice.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        String[] partes = msg.split(" ");
-            for (int i = 0; i < partes.length; i++) {
-                System.out.println("es: "+partes[i]);
-            }
+        //Cargo la tabla con los nuevos valores 
         cargarTabla(partes);
-        
-        
     }
-    
-    public void cargarTabla(String [] partes){
+    private void cargarTabla(String [] partes){
         Object [] fila = new Object[9];
         fila[0]=partes[0];
         fila[1]=partes[1];
@@ -158,13 +160,44 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         fila[6]=partes[6];
         fila[7]=partes[7];
         fila[8]=partes[8];
-        
         DefaultTableModel modelo =(DefaultTableModel) this.jTableInfoElementProcess.getModel(); 
         modelo.addRow(fila); 
         this.jTableInfoElementProcess.setModel(modelo);
-        
     }
+    /**
+     * se obtienen las mediciones de la DB y se muestran por interfaz 
+     * @throws SQLException se capturan posibles excepciones  
+     */
+    private void obtenerMediciones() throws SQLException{
+        ArrayList<Measurement> lstMeasurement = new ArrayList<>();
+        lstMeasurement = this.objService.getMeasurements();
+        String estado; 
+        if(!lstMeasurement.isEmpty()){
+            Object matriz[][] = new Object[lstMeasurement.size()][9];
+            for(int i = 0; i < lstMeasurement.size(); i++){
+                matriz[i][0] = lstMeasurement.get(i).getNombreProducto();
+                matriz[i][1] = lstMeasurement.get(i).getAnchoReal();
+                matriz[i][2] = lstMeasurement.get(i).getAltoReal();
+                matriz[i][3] = lstMeasurement.get(i).getPesoReal();
+                matriz[i][4] = lstMeasurement.get(i).getAnchoIdeal();
+                matriz[i][5] = lstMeasurement.get(i).getAltoIdeal();
+                matriz[i][6] = lstMeasurement.get(i).getPesoIdeal();
+                matriz[i][7] = lstMeasurement.get(i).getTipoProducto();
+                matriz[i][8] = lstMeasurement.get(i).getEstadoProducto();
 
+                this.jTableInfoElementProcess.setModel(new DefaultTableModel(
+                matriz, 
+                new String[]{"Producto", "Ancho real (cm)", "Alto real (cm)", "Peso real (kg)",
+                            "Ancho ideal(cm)", "Alto ideal(cm)", "Peso ideal(kg)", "Tipo", "Estado"}
+                ));
+                estado = lstMeasurement.get(i).getEstadoProducto();
+                CellRenderer render = new CellRenderer(estado);
+                jTableInfoElementProcess.setDefaultRenderer(Object.class, render);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Actualmente no tiene mediciones guardadas en la DB","Mediciones", JOptionPane.WARNING_MESSAGE);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

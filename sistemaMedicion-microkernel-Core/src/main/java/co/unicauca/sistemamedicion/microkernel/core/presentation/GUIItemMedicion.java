@@ -1,14 +1,11 @@
 package co.unicauca.sistemamedicion.microkernel.core.presentation;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import co.unicauca.sistemamedicion.microkernel.common.entities.ItemMedicionElemento;
 import co.unicauca.sistemamedicion.microkernel.common.entities.ProcesoElemento;
 import co.unicauca.sistemamedicion.microkernel.core.business.ProcessService;
 import co.unicauca.sistemamedicion.microkernel.core.business.ProductService;
 import co.unicauca.sistemamedicion.microkernel.core.infra.Publisher;
-import com.google.gson.Gson;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Milthon Caicedo, Yazmin Gutierrez, Erica Camacho, Brandon Bohórquez, Juan Medicis
  */
 public class GUIItemMedicion extends javax.swing.JInternalFrame {
-    
     /**
      * Atributos 
      */
@@ -25,16 +21,13 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
     private ProcessService processService;
     List<ItemMedicionElemento> products;
     Publisher publisher;
-//    ServicioMedicion servicioMedicion;
     /**
      * Creates new form GUIItemMedicion
      */
     public GUIItemMedicion() {
         initComponents();
-        this.jButtonMuestra.setVisible(false);
         productService = new ProductService();
         publisher = new Publisher();
-//        products = productService.getProducts();
     }
 
     /**
@@ -47,46 +40,24 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanelCentral = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPaneInfoElementDefectuosos = new javax.swing.JScrollPane();
-        jTableInfoElementDefectuosos = new javax.swing.JTable();
         jLabelAltura = new javax.swing.JLabel();
         jtxtAltura = new javax.swing.JTextField();
         jLabelAncho = new javax.swing.JLabel();
         jtxtAncho = new javax.swing.JTextField();
         jLabelPeso = new javax.swing.JLabel();
         jtxtPeso = new javax.swing.JTextField();
-        jButtonMuestra = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabelTipoProducto = new javax.swing.JLabel();
         jComboBoxTipoProducto = new javax.swing.JComboBox<>();
         jLabelCodigoProceso = new javax.swing.JLabel();
         jtxtCodigoProducto = new javax.swing.JTextField();
-        jButtonValidarProducto = new javax.swing.JButton();
+        jButtonEnviarMuestra = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jtxtNombre = new javax.swing.JTextField();
+        jButtonCerrar = new javax.swing.JButton();
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Impresión de resultados ");
-
-        jLabel3.setText("Latas en estado Optimo");
-
-        jLabel4.setText("Latas en estado defectuoso");
-
-        jTableInfoElementDefectuosos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Alto(cm)", "Ancho(cm)", "Peso(kg)", "Estado", "Tipo"
-            }
-        ));
-        jScrollPaneInfoElementDefectuosos.setViewportView(jTableInfoElementDefectuosos);
-
-        jLabelAltura.setText("Altura(cm):");
+        jLabelAltura.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelAltura.setText("ALTURA (CM)");
 
         jtxtAltura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +65,8 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabelAncho.setText("Ancho(cm):");
+        jLabelAncho.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelAncho.setText("ANCHO (CM)");
 
         jtxtAncho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,93 +74,77 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabelPeso.setText("Peso(kg):");
+        jLabelPeso.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelPeso.setText("PESO (KG)");
 
-        jButtonMuestra.setBackground(new java.awt.Color(54, 102, 167));
-        jButtonMuestra.setText("Enviar muestra");
-        jButtonMuestra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMuestraActionPerformed(evt);
-            }
-        });
-
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Datos del producto");
 
-        jLabelTipoProducto.setText("Tipo de prodocto");
+        jLabelTipoProducto.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelTipoProducto.setText("TIPO DE PRODUCTO");
 
         jComboBoxTipoProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cerveza", "Gaseosa" }));
 
-        jLabelCodigoProceso.setText("Código del producto:");
+        jLabelCodigoProceso.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelCodigoProceso.setText("CÓDIGO DE PRODUCTO");
 
-        jButtonValidarProducto.setText("Validar producto");
-        jButtonValidarProducto.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEnviarMuestra.setBackground(new java.awt.Color(54, 102, 167));
+        jButtonEnviarMuestra.setText("Enviar muestra");
+        jButtonEnviarMuestra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonValidarProductoActionPerformed(evt);
+                jButtonEnviarMuestraActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Nombre:");
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel5.setText("NOMBRE O DESCRIPCIÓN DEL PRODUCTO");
+
+        jButtonCerrar.setBackground(new java.awt.Color(194, 47, 47));
+        jButtonCerrar.setText("Cerrar");
 
         javax.swing.GroupLayout jPanelCentralLayout = new javax.swing.GroupLayout(jPanelCentral);
         jPanelCentral.setLayout(jPanelCentralLayout);
         jPanelCentralLayout.setHorizontalGroup(
             jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCentralLayout.createSequentialGroup()
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCentralLayout.createSequentialGroup()
-                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelCentralLayout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelCentralLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelAltura)))
-                        .addGap(48, 48, 48)
-                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPaneInfoElementDefectuosos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelCentralLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanelCentralLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonMuestra)
-                            .addGroup(jPanelCentralLayout.createSequentialGroup()
-                                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtxtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCentralLayout.createSequentialGroup()
-                                        .addComponent(jtxtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(58, 58, 58)
-                                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabelCodigoProceso)
-                                            .addComponent(jtxtPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                                            .addComponent(jLabelPeso)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jtxtNombre))))
-                                .addGap(52, 52, 52)
-                                .addComponent(jButtonValidarProducto)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanelCentralLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCentralLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(72, 72, 72))
-                    .addGroup(jPanelCentralLayout.createSequentialGroup()
                         .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTipoProducto)
-                            .addComponent(jComboBoxTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButtonEnviarMuestra)
+                                .addGap(285, 285, 285)
+                                .addComponent(jButtonCerrar))
+                            .addGroup(jPanelCentralLayout.createSequentialGroup()
+                                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelCentralLayout.createSequentialGroup()
+                                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelAltura)
+                                            .addComponent(jLabelAncho))
+                                        .addGap(333, 333, 333)
+                                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jtxtPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                            .addComponent(jtxtNombre)))
+                                    .addGroup(jPanelCentralLayout.createSequentialGroup()
+                                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jtxtAltura)
+                                                .addComponent(jComboBoxTipoProducto, 0, 354, Short.MAX_VALUE))
+                                            .addComponent(jLabelTipoProducto))
+                                        .addGap(41, 41, 41)
+                                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelCodigoProceso)
+                                            .addComponent(jtxtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(jPanelCentralLayout.createSequentialGroup()
                         .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jtxtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelAncho))
-                        .addGap(0, 829, Short.MAX_VALUE))))
+                            .addComponent(jtxtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelCentralLayout.setVerticalGroup(
             jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,37 +156,37 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonValidarProducto))
-                .addGap(18, 18, 18)
+                    .addComponent(jtxtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAltura)
                     .addComponent(jLabelPeso))
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtxtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCentralLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonMuestra)
-                .addGap(69, 69, 69)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPaneInfoElementDefectuosos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCentralLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCerrar)
+                        .addContainerGap())
+                    .addGroup(jPanelCentralLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonEnviarMuestra)
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,106 +194,23 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-//    private void deteccionElemento(){
-//        String peticion = "start";
-//        Disparador objDisparador = new Disparador();
-//        IServicioItemMedicion objItemMedicion;
-//        objItemMedicion = FabricaItemMedicion.getInstance().obtenerItemMedicion();
-//        objDisparador.deteccionElemento(peticion);
-//        // Inyecta la dependencia
-//        servicioMedicion = new ServicioMedicion(objItemMedicion);
-//        
-//        //Eviamos la petición 
-//        String respuesta = "";
-//        try {
-//            respuesta = servicioMedicion.deteccionElemento(objDisparador); 
-//        } catch (Exception ex) {
-//            Logger.getLogger(GUIItemMedicion.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        //Según la respuesta del servidor tomo decisiones 
-//        if (respuesta.equals("datos")) {
-//            //Eviamos los datos de la muestra al servidor
-//            JOptionPane.showMessageDialog(this, "Esperando "+respuesta,"Respuesta servidor",JOptionPane.INFORMATION_MESSAGE);
-//             this.jButtonMuestra.setVisible(true);    
-//        }else{
-//            JOptionPane.showMessageDialog(this, respuesta,"Respuesta servidor",JOptionPane.INFORMATION_MESSAGE);
-//        }  
-//    }   
-//    private void recolectarDatos(){
-//        String respuesta = "";
-//        if (servicioMedicion != null) {
-//            
-//            LataCerveza objCerveza = new LataCerveza();   
-//            try{
-//                if (this.jtxtAltura.getText() != null && this.jtxtAncho.getText() != "" && this.jtxtPeso.getText() != "" ) {
-//                    objCerveza.setAltura(Float.parseFloat(this.jtxtAltura.getText()));
-//                    objCerveza.setAncho(Float.parseFloat(this.jtxtAncho.getText()));
-//                    objCerveza.setPeso(Float.parseFloat(this.jtxtPeso.getText()));                          
-//                    respuesta = servicioMedicion.recoleccionDatos(objCerveza);
-//                    JOptionPane.showMessageDialog(this, respuesta,"Respuesta servidor",JOptionPane.INFORMATION_MESSAGE);
-//                    mostrarInfoResultado(respuesta);
-//                }
-//                
-//            }catch(Exception e){
-//                System.out.println("Verificar datos");
-//            }
-//           
-//            
-//        }
-//        
-//    }
-    /**
-     * Mostrar datos del resultado 
-     * @param 
-     */
-//    private void mostrarInfoResultado(String respuesta){
-//        Gson gson = new Gson();
-//        LataCerveza cerveza = gson.fromJson(respuesta, LataCerveza.class);
-//        cargarTabla(cerveza);
-//    }
-//    private void cargarTabla(LataCerveza cerveza){ 
-//        Object [] fila = new Object[5];
-//        fila[0] = cerveza.getAltura();
-//        fila[1] = cerveza.getAncho();
-//        fila[2] = cerveza.getPeso();
-//        fila[3] = cerveza.getEstado();
-//        fila[4] = cerveza.getTipo();
-//        //Depende del estado lo agrega a la tabla de optimos o defectuosos
-//        if (cerveza.getEstado().equals("optimo")) {
-//            DefaultTableModel modelo =(DefaultTableModel) this.jTableInfoElementOptimos.getModel(); 
-//            modelo.addRow(fila); 
-//            this.jTableInfoElementOptimos.setModel(modelo);
-//        }else{
-//            DefaultTableModel modelo =(DefaultTableModel) this.jTableInfoElementDefectuosos.getModel(); 
-//            modelo.addRow(fila); 
-//            this.jTableInfoElementDefectuosos.setModel(modelo);
-//        }
-//    
-//    }
     private void jtxtAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtAlturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtAlturaActionPerformed
-    /**
-    * Accion del boton muestra de datos 
-    * @param evt 
-    */
-    private void jButtonMuestraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMuestraActionPerformed
-        // TODO add your handling code here:
-//        recolectarDatos();
-    }//GEN-LAST:event_jButtonMuestraActionPerformed
 
     private void jtxtAnchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtAnchoActionPerformed
         // TODO add your handling code here:
@@ -346,11 +219,8 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
      * Accion para validar el tipo de proceso que se lleva a cabo 
      * @param evt 
      */
-    private void jButtonValidarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarProductoActionPerformed
-//        ItemMedicionElemento selectedProduct = products.get(this.jComboBoxTipoProducto.getSelectedIndex());
-//        System.out.println("PROCESSENTIRY: "+ProcessEntity.getIdProcess());
+    private void jButtonEnviarMuestraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarMuestraActionPerformed
         String tipoProducto = jComboBoxTipoProducto.getSelectedItem().toString();
-        
         try {
             processService = new ProcessService();
             float Altura = Float.parseFloat(this.jtxtAltura.getText());
@@ -366,29 +236,16 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
             objItemMedicion.setTipo(tipoProducto);
             ProcesoElemento ProcessEntity = new ProcesoElemento(objItemMedicion, this.jtxtCodigoProducto.getText());
             ProcesoElemento procesoRetornado = processService.ProcessProduct(ProcessEntity, Altura, Ancho, Peso);
-            
-            
-//            jTextFieldEstadoProducto.setText(""+procesoRetornado.getElemento().getEstado());
-//            jButtonProductosOptimos.setVisible(true);
-//            Product selectedProduct = products.get(this.jComboBox1.getSelectedIndex());
-//            procesoRetornado = products.get(procesoRetornado.getElemento().getEstado());
-            Gson gson = new Gson();
-//            String info = objItemMedicion.getTipo()+ " " + objItemMedicion.getNombre()
-//                    + " " + procesoRetornado.getElemento().getEstado();
-            String info = procesoRetornado.getElemento().getNombre()+ " " +
-                    procesoRetornado.getElemento().getLstValoresReales().get(1)+ " " +
-                    procesoRetornado.getElemento().getLstValoresReales().get(0)+ " " +
-                    procesoRetornado.getElemento().getLstValoresReales().get(2)+ " " +
-                    procesoRetornado.getElemento().getLstValoresIdeales().get(1)+ " " +
-                    procesoRetornado.getElemento().getLstValoresIdeales().get(0)+ " " +
-                    procesoRetornado.getElemento().getLstValoresIdeales().get(2)+ " " +
-                    procesoRetornado.getElemento().getTipo()+ " " +
+            //Construyo el template de String 
+            String info = procesoRetornado.getElemento().getNombre()+ "," +
+                    procesoRetornado.getElemento().getLstValoresReales().get(1)+ "," +
+                    procesoRetornado.getElemento().getLstValoresReales().get(0)+ "," +
+                    procesoRetornado.getElemento().getLstValoresReales().get(2)+ "," +
+                    procesoRetornado.getElemento().getLstValoresIdeales().get(1)+ "," +
+                    procesoRetornado.getElemento().getLstValoresIdeales().get(0)+ "," +
+                    procesoRetornado.getElemento().getLstValoresIdeales().get(2)+ "," +
+                    procesoRetornado.getElemento().getTipo()+ "," +
                     procesoRetornado.getElemento().getEstado();
-
-            //String info = jComboBoxTipoProducto.getSelectedItem().toString();
-            //System.out.println("INFO: "+info);
-            //String msgJson = gson.toJson(procesoRetornado.getElemento());
-            //String msgJson = procesoRetornado.getElemento().getEstado();
             publisher.publish(info);
             
             limpiarCampos();
@@ -396,7 +253,10 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(this, "No fue posible realizar el proceso al producto", "Error", JOptionPane.ERROR_MESSAGE);
             }   
-    }//GEN-LAST:event_jButtonValidarProductoActionPerformed
+    }//GEN-LAST:event_jButtonEnviarMuestraActionPerformed
+    /**
+     * Limpia los campos cuando se envía una medición correcta. 
+     */
     private void limpiarCampos(){
         this.jtxtAltura.setText("");
         this.jtxtAncho.setText("");
@@ -406,13 +266,10 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonMuestra;
-    private javax.swing.JButton jButtonValidarProducto;
+    private javax.swing.JButton jButtonCerrar;
+    private javax.swing.JButton jButtonEnviarMuestra;
     private javax.swing.JComboBox<String> jComboBoxTipoProducto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelAltura;
     private javax.swing.JLabel jLabelAncho;
@@ -420,8 +277,6 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelPeso;
     private javax.swing.JLabel jLabelTipoProducto;
     private javax.swing.JPanel jPanelCentral;
-    private javax.swing.JScrollPane jScrollPaneInfoElementDefectuosos;
-    private javax.swing.JTable jTableInfoElementDefectuosos;
     private javax.swing.JTextField jtxtAltura;
     private javax.swing.JTextField jtxtAncho;
     private javax.swing.JTextField jtxtCodigoProducto;

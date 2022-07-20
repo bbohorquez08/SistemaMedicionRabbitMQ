@@ -1,4 +1,5 @@
 co\unicauca\subscriber\processProduct\acces\RepositoryMySql.class
+co\unicauca\subscriber\processProducts\presentation\CellRenderer.class
 co\unicauca\subscriber\processProduct\acces\ConnectDB.class
 co\unicauca\subscriber\processProducts\presentation\DeliveryOffice.class
 co\unicauca\subscriber\processProduct\model\Measurement.class

@@ -6,7 +6,6 @@ co\unicauca\sistemamedicion\microkernel\core\presentation\GUIMenu$1.class
 co\unicauca\sistemamedicion\microkernel\core\presentation\GUIMenu$2.class
 co\unicauca\sistemamedicion\microkernel\core\business\ProcessService.class
 co\unicauca\sistemamedicion\microkernel\core\presentation\GUIMenu.class
-co\unicauca\sistemamedicion\microkernel\core\presentation\GUIItemMedicion$4.class
 co\unicauca\sistemamedicion\microkernel\core\presentation\GUISendProduct$2.class
 co\unicauca\sistemamedicion\microkernel\core\presentation\GUISendProduct$3.class
 co\unicauca\sistemamedicion\microkernel\core\plugin\manager\PluginManager.class
