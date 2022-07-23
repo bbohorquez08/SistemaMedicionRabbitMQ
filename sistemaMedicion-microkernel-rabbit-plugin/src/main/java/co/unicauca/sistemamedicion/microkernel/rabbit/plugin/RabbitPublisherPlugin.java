@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.rabbit.plugin;
 
 import co.unicauca.sistemamedicion.microkernel.common.interfaces.IPublisherPlugin;
@@ -35,8 +30,6 @@ public class RabbitPublisherPlugin implements IPublisherPlugin {
             Logger.getLogger(RabbitPublisherPlugin.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
-
-
     public void setProperties(Properties properties) {
         this.properties = properties;
     }

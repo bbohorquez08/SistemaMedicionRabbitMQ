@@ -5,8 +5,7 @@ import java.sql.DriverManager;
  *
  * @author mfcaicedo    
  */
-public class ConnectDB {
-    
+public class ConnectDB {    
     public static final String URL = "jdbc:mysql://localhost:3306/dbsistemamedicion";
     public static final String USER = "root";
     public static final String CLAVE = "root"; //Milthon Cicedo  
@@ -24,5 +23,4 @@ public class ConnectDB {
         }
         return con;
     }
- 
 }

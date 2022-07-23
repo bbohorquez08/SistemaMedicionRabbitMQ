@@ -20,11 +20,23 @@ public class Measurement {
     private String estadoProducto; 
     
     /**
-     * Constructor
+     * Constructor vacio
      */
-    public Measurement(){
-        
+    public Measurement(){ 
     }
+    /**
+     * Constructor parametrizado
+     * @param idMedicion codigo del producto a medir
+     * @param nombreProducto nombre del producto a medir 
+     * @param anchoReal ancho del producto a medir
+     * @param altoReal alto del producto a medir
+     * @param pesoReal peso del producto a medir
+     * @param anchoIdeal ancho del producto esperado
+     * @param altoIdeal alto del producto esperado
+     * @param pesoIdeal peso del producto esperado
+     * @param tipoProducto tipo del producto a medir
+     * @param estadoProducto estado del producto a medir
+     */
     public Measurement(int idMedicion, String nombreProducto, float anchoReal, float altoReal, 
             float pesoReal, float anchoIdeal, float altoIdeal, float pesoIdeal, String tipoProducto,
             String estadoProducto){

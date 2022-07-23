@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.subscriber.processProducts.presentation;
 
 import co.unicauca.sistemamedicion.microkernel.common.entities.ItemMedicionElemento;
@@ -27,7 +22,7 @@ import javax.swing.table.TableColumn;
 
 /**
  *
- * @author yavigutierrez
+ * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
 public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
 
@@ -131,6 +126,11 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
             }
         });
     }
+
+    /**
+     * Realiza un manejo de la informacion que llega para poder cargar la tabla y guardar los datos
+     * @param msg mensaaje recibido
+     */
     @Override
     public void onMessage(String msg) {
         System.out.println("msg: " + msg);
@@ -154,6 +154,10 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         //Cargo la tabla con los nuevos valores 
         cargarTabla(partes);
     }
+    /**
+     * cargar la tabla con la informacion proporcionada
+     * @param partes array que cntiene la informacion del producto medido
+     */
     private void cargarTabla(String [] partes){
         Object [] fila = new Object[9];
         fila[0]=partes[0];
@@ -170,7 +174,7 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         this.jTableInfoElementProcess.setModel(modelo);
     }
     /**
-     * se obtienen las mediciones de la DB y se muestran por interfaz 
+     * Se obtienen las mediciones de la DB y se muestran por interfaz 
      * @throws SQLException se capturan posibles excepciones  
      */
     private void obtenerMediciones() throws SQLException{

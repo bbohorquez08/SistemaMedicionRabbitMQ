@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author mfcaicedo
@@ -20,7 +19,6 @@ public class RepositoryMySql {
      * Constructor vacío
      */
     public RepositoryMySql(){
-        
     } 
     /**
      * Agrega una medición en la base de datos 
@@ -57,10 +55,15 @@ public class RepositoryMySql {
             System.out.println(e);
         }finally{
             con.close();            
-        }
-        
+        }        
         return 0; 
     }
+
+    /**
+     * Obtiene las medidas que se han almacenado en la base de datos 
+     * @return un arrayList que contiene las medidas de los productos que se han ingresado
+     * @throws SQLException se capturan posibles excepciones
+     */
     public ArrayList<Measurement> getMeasurements()throws SQLException{
         Connection con  = null;
         PreparedStatement stmt;
@@ -90,6 +93,5 @@ public class RepositoryMySql {
             con.close();
         }
         return auxListMeasurements;
-    }
-    
+    }    
 }

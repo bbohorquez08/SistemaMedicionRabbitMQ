@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.subscriber.processProducts.infra;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
@@ -19,19 +14,25 @@ import java.util.logging.Logger;
 import java.util.Properties;
 /**
  *
- * @author yavigutierrez
+ * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
 public class RabbitListener implements Runnable{
-
     private final static String FILE_NAME = "connectionProperties.properties";
     ISubscriber myOffice;
     Properties connectionProperties;
 
+    /**
+     * Constructor parametrizado
+     * @param office instancia de la interfaz ISubscriber
+     */
     public RabbitListener(ISubscriber office) {
         this.myOffice = office; 
         loadProperties(getBaseFilePath());
     }
     
+    /**
+     * Realiza la conexion para poder recibir mensajes 
+     */
     @Override
     public void run() {
     try {
@@ -52,30 +53,31 @@ public class RabbitListener implements Runnable{
             Logger.getLogger(RabbitListener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Obtiene la ruta del archivo base
+     */
     private String getBaseFilePath() {
         String path = RabbitListener.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 
         File pathFile = new File(path);
         if (pathFile.isFile()) {
             path = pathFile.getParent();
-
             if (!path.endsWith(File.separator)) {
                 path += File.separator;
             }
-
         }
-
         return path;
     }
+    /**
+     * Carga las propiedades del archivo base
+     */
     private void loadProperties(String basePath){   
         try {
             connectionProperties = new Properties();
             String filePath = basePath+FILE_NAME;
             filePath = URLDecoder.decode(filePath, "UTF-8");
             try (FileInputStream stream = new FileInputStream(filePath)) { 
-                connectionProperties.load(stream);
-                
+                connectionProperties.load(stream);                
             } catch (IOException ex) {
                 Logger.getLogger("DeliveryPluginManager").log(Level.SEVERE, "Error al ejecutar la aplicación", ex);
             }            

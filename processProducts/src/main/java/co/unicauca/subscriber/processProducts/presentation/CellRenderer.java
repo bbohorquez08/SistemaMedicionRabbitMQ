@@ -3,7 +3,6 @@ package co.unicauca.subscriber.processProducts.presentation;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -12,14 +11,25 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author mfcaicedo
  */
 public class CellRenderer extends DefaultTableCellRenderer{
-    /**
-     * Constructor 
-     */
     public String estado;
+
+    /**
+     * Constructor con parametros
+     * @param estado estado del producto medido
+     */
     public CellRenderer(String estado){
         this.estado = estado;
     }
     
+    /**
+     * Permite renderizar atributos de una tabla 
+     * @param table 
+     * @param value  
+     * @param isSelected 
+     * @param hasFocus
+     * @param row
+     * @param column
+     */
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         //reseteo el background  
@@ -27,7 +37,6 @@ public class CellRenderer extends DefaultTableCellRenderer{
         setBackground(gray);
         //COnstructor de la clase DefaultTableCellRenderer
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        
         //Creamos un color para las filas.
         Color green = new Color(93, 204, 86);
         Color orange = new Color(230, 70, 23);
@@ -38,5 +47,4 @@ public class CellRenderer extends DefaultTableCellRenderer{
         }
         return this;
     }
-
 }
