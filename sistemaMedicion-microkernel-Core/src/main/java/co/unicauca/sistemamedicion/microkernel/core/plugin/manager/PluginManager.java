@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.core.plugin.manager;
 
 import co.unicauca.sistemamedicion.microkernel.common.interfaces.IProductProcessPlugin;
@@ -18,22 +13,32 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author eri-k
+ * @author  mfcaicedo, bbohorquez, erikalcamacho, yavigutierrez, juanjosz
  */
 public class PluginManager {
     private static final String FILE_NAME = "plugin.properties";
     private static PluginManager instance;
 
     private Properties pluginProperties;
-
+    /**
+     * Constructor sin parametros
+     */
     private PluginManager() {
         pluginProperties = new Properties();
     }
-
+    
+    /**
+     * Obtiene una unica instancia del PluginManager
+     */
     public static PluginManager getInstance() {
         return instance;
     }
-
+    
+    /**
+     * Inicializa el PluginManager y a partir de este carga las propiedades
+     * @param basePath ruta base
+     * @throws Exception se capturan las posibles excepciones
+     */
     public static void init(String basePath) throws Exception {
 
         instance = new PluginManager();
@@ -43,7 +48,9 @@ public class PluginManager {
         }
 
     }
-    
+     /**
+     * Carga las propiedades del archivo base
+     */
     private void loadProperties(String basePath){   
         try {
             String filePath = basePath+FILE_NAME;
@@ -53,14 +60,17 @@ public class PluginManager {
                 pluginProperties.load(stream);
                 
             } catch (IOException ex) {
-                //revisarrrrrrrrr
                 Logger.getLogger("ProcessPluginManager").log(Level.SEVERE, "Error al ejecutar la aplicación", ex);
             }            
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(PluginManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Obtiene la clase del plugin
+     * @param classNameProperty
+     * @return objeto de la clase identificada
+     */
     private Object getAnyObject(String classNameProperty) {
         if (!pluginProperties.containsKey(classNameProperty)) {
             return null;
@@ -85,7 +95,7 @@ public class PluginManager {
         }
         return plugin;
     }    
-    
+
     public IPublisherPlugin getPublisherPlugin(String propertyTechPublisher) {
         IPublisherPlugin plugin = null;
         Object pluginObject= getAnyObject(propertyTechPublisher);

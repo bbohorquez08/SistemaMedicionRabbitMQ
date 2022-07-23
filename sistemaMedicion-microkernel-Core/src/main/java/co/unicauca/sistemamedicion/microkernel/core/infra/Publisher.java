@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.core.infra;
 
 
@@ -18,7 +13,10 @@ public class Publisher {
 
     public Publisher() {
     }
-    
+    /**
+     * Se encarga de enviar el mensaje al suscriptor
+     * @param msg mensaje a publicar
+     */
     public void publish(String msg){
         PluginManager manager = PluginManager.getInstance();
         IPublisherPlugin publisher = manager.getPublisherPlugin("publisherTech"); 

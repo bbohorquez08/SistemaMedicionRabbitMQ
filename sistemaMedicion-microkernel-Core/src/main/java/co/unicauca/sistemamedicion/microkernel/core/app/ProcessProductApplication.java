@@ -1,20 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.core.app;
 
 import co.unicauca.sistemamedicion.microkernel.core.plugin.manager.PluginManager;
 import co.unicauca.sistemamedicion.microkernel.core.presentation.GUIMenu;
-import co.unicauca.sistemamedicion.microkernel.core.presentation.GUISendProduct;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author eri-k
+ * @author mfcaicedo, bbohorquez, erikalcamacho, yavigutierrez, juanjosz
  */
 public class ProcessProductApplication {
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.core.business;
 
 import co.unicauca.sistemamedicion.microkernel.common.entities.ItemMedicionElemento;
@@ -11,9 +6,13 @@ import java.util.List;
 
 /**
  *
- * @author eri-k
+ * @author  mfcaicedo, bbohorquez, erikalcamacho, yavigutierrez, juanjosz
  */
 public class ProductService {
+    /**
+     * Obtiene los productos de prueba
+     * @return lista donde se encuentran los productos de prueba
+     */
     public List<ItemMedicionElemento> getProducts() {
 
         List<ItemMedicionElemento> products = new ArrayList<>();

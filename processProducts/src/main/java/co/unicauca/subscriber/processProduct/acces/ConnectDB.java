@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 public class ConnectDB {    
     public static final String URL = "jdbc:mysql://localhost:3306/dbsistemamedicion";
     public static final String USER = "root";
-    public static final String CLAVE = "root"; //Milthon Cicedo  
+    public static final String CLAVE = "root";
     /**
      * Se obtiene la conexión de la base de datos 
      * @return la conexión de tipo Connection. 

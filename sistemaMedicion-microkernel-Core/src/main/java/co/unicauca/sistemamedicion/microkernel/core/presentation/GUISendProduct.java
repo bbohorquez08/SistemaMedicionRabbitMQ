@@ -1,15 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.core.presentation;
 
-//import co.unicauca.microkernel.infra.Publisher;
-//import co.unicauca.microkernel.business.DeliveryService;
-//import co.unicauca.microkernel.business.ProductService;
-//import co.unicauca.microkernel.common.entities.Delivery;
-//import co.unicauca.microkernel.common.entities.Product;
 import co.unicauca.sistemamedicion.microkernel.common.entities.ItemMedicionElemento;
 import co.unicauca.sistemamedicion.microkernel.common.entities.ProcesoElemento;
 import co.unicauca.sistemamedicion.microkernel.core.business.ProcessService;
