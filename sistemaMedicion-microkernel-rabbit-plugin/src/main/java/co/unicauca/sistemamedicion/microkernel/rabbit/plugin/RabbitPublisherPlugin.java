@@ -12,10 +12,14 @@ import java.util.Properties;
 
 /**
  *
- * @author eri-k
+ * @author mfcaicedo, bbohorquez, erikalcamacho, yavigutierrez, juanjosz
  */
 public class RabbitPublisherPlugin implements IPublisherPlugin {
     private Properties properties;
+    /**
+     * Realiza la conexión para enviar el mensaje
+     * @param msg mensaje a enviar
+     */
     @Override
     public void publish(String msg){
         ConnectionFactory factory = new ConnectionFactory();
@@ -30,6 +34,10 @@ public class RabbitPublisherPlugin implements IPublisherPlugin {
             Logger.getLogger(RabbitPublisherPlugin.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
+    /**
+     * Setter de properties
+     * @param properties 
+     */
     public void setProperties(Properties properties) {
         this.properties = properties;
     }
