@@ -19,7 +19,7 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
      */
     private ProductService productService;
     private ProcessService processService;
-    List<ItemMedicionElemento> products;
+    List<ItemMedicionElemento> productosIdeales;
     Publisher publisher;
     /**
      * Creates new form GUIItemMedicion
@@ -29,7 +29,6 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
         productService = new ProductService();
         publisher = new Publisher();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,9 +174,9 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCentralLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -186,7 +185,7 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
                     .addGroup(jPanelCentralLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonEnviarMuestra)
-                        .addContainerGap(16, Short.MAX_VALUE))))
+                        .addContainerGap(38, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,7 +200,7 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -213,7 +212,6 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtxtAlturaActionPerformed
 
     private void jtxtAnchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtAnchoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jtxtAnchoActionPerformed
     /**
      * Accion para validar el tipo de proceso que se lleva a cabo 
@@ -236,7 +234,7 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
             objItemMedicion.setTipo(tipoProducto);
             ProcesoElemento ProcessEntity = new ProcesoElemento(objItemMedicion, this.jtxtCodigoProducto.getText());
             ProcesoElemento procesoRetornado = processService.ProcessProduct(ProcessEntity, Altura, Ancho, Peso);
-            //Construyo el template de String 
+            //Construyo el template de String y posteriormente enviar la información 
             String info = procesoRetornado.getElemento().getNombre()+ "," +
                     procesoRetornado.getElemento().getLstValoresReales().get(1)+ "," +
                     procesoRetornado.getElemento().getLstValoresReales().get(0)+ "," +
@@ -264,7 +262,6 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
         this.jtxtNombre.setText("");
         this.jtxtCodigoProducto.setText("");
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonEnviarMuestra;
@@ -283,5 +280,4 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtxtNombre;
     private javax.swing.JTextField jtxtPeso;
     // End of variables declaration//GEN-END:variables
-
 }

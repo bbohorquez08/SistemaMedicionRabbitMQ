@@ -6,9 +6,7 @@ import co.unicauca.sistemamedicion.microkernel.core.business.ProcessService;
 import co.unicauca.sistemamedicion.microkernel.core.business.ProductService;
 import co.unicauca.sistemamedicion.microkernel.core.infra.Publisher;
 import java.util.List;
-import com.google.gson.Gson;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author ahurtado
@@ -19,7 +17,6 @@ public class GUISendProduct extends javax.swing.JFrame{
     private ProcessService processService;
     List<ItemMedicionElemento> products;
     Publisher publisher;
-
     /**
      * Creates new form GUISendProduct
      */
@@ -27,15 +24,8 @@ public class GUISendProduct extends javax.swing.JFrame{
         initComponents();
         productService = new ProductService();
         publisher = new Publisher();
-        products = productService.getProducts();
-        for (int index = 0; index < products.size(); index++) {
-        jComboBoxProducts.addItem(products.get(index).getNombre());
-        }
-        jTextFieldEstadoProducto.setEnabled(false);
-        jTextFieldEstadoProducto.setText("...");
-        jButtonProductosOptimos.setVisible(false);
+        loadProductIdeals();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,9 +95,24 @@ public class GUISendProduct extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Carga los productos ideales con los respectivos datos ideales según los pluggins actuales
+     */
+    private void loadProductIdeals(){
+        products = productService.getProductsIdeals();
+        for (int index = 0; index < products.size(); index++) {
+        jComboBoxProducts.addItem(products.get(index).getNombre());
+        }
+        jTextFieldEstadoProducto.setEnabled(false);
+        jTextFieldEstadoProducto.setText("...");
+        jButtonProductosOptimos.setVisible(false);
+    }
+    /**
+     * Acción del botón que inicia el proceso que se le aplica al producto. 
+     * @param evt 
+     */
     private void jButtonProcesoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcesoProductoActionPerformed
-        // TODO add your handling code here:
+
         ItemMedicionElemento selectedProduct = products.get(this.jComboBoxProducts.getSelectedIndex());
         ProcesoElemento ProcessEntity = new ProcesoElemento(selectedProduct, jTextFieldIdProcess.getText());
         try {
@@ -123,20 +128,10 @@ public class GUISendProduct extends javax.swing.JFrame{
         
         
     }//GEN-LAST:event_jButtonProcesoProductoActionPerformed
-
     private void jButtonProductosOptimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProductosOptimosActionPerformed
-        // TODO add your handling code here:
-//        Product selectedProduct = products.get(this.jComboBoxProducts.getSelectedIndex());
-//        Gson gson = new Gson();
-//        String msgJson = gson.toJson(selectedProduct);
-//        publisher.publish(msgJson);
     }//GEN-LAST:event_jButtonProductosOptimosActionPerformed
-
     private void jTextFieldIdProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdProcessActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldIdProcessActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonProcesoProducto;
     private javax.swing.JButton jButtonProductosOptimos;
