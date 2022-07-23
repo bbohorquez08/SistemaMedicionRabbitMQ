@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.soda.plugin;
 
 import co.unicauca.sistemamedicion.microkernel.common.entities.ItemMedicionElemento;
@@ -14,10 +9,18 @@ import java.util.ArrayList;
 
 /**
  *
- * @author eri-k
+ * @author mfcaicedo, bbohorquez, erikalcamacho, yavigutierrez, juanjosz
  */
 public class SodaProcessPlugin implements IProductProcessPlugin{
 
+    /**
+     * Recolecta los datos por medio del sensor
+     * @param elemento producto a medir
+     * @param altura altura del producto
+     * @param ancho ancho del producto
+     * @param peso peso del producto
+     * @return el producto con los datos recolectados
+     */
     @Override
     public ItemMedicionElemento recoleccionDatos(ItemMedicionElemento elemento, float altura, float ancho, float peso) {
         SensorCamara objCamara = new SensorCamara(elemento);
@@ -32,6 +35,11 @@ public class SodaProcessPlugin implements IProductProcessPlugin{
 
     }
 
+    /**
+     * Clasifica el elemento segun valores arrojados
+     * @param lstComparaciones lista que tiene el margen de error para cada valor medido
+     * @return true cuando el estado es optimo de lo contrario retorna false
+     */
     @Override
     public boolean clasificacionElemento(ArrayList<Float> lstComparaciones) {
         boolean bandera=false;
@@ -46,12 +54,21 @@ public class SodaProcessPlugin implements IProductProcessPlugin{
 
     }
 
+    /**
+     * Leer sensor
+     * @param sensor
+     * @return
+     */
     @Override
-    public Sensor leerSensor(Sensor sensor) {
-        //se haría la lectura. 
+    public Sensor leerSensor(Sensor sensor) { 
         return sensor;
     }
 
+    /**
+     * Añade los valores reales a una lista
+     * @param product producto que contiene la informacion
+     * @return lista con los valores reales del producto
+     */
     @Override
     public ArrayList<Float> analisisDatos(ItemMedicionElemento product) {
         ArrayList<Float> lstValoresReales = new ArrayList<>();
@@ -61,6 +78,14 @@ public class SodaProcessPlugin implements IProductProcessPlugin{
         return lstValoresReales;
     }
 
+    /**
+     * Realiza la medicion y clasificacion del proceso que llega
+     * @param proceso proceso en el que se encuentra el producto a medir
+     * @param altura altura del producto
+     * @param ancho ancho del producto
+     * @param peso peso del producto 
+     * @return proceso con los resultados despues de procesar la medicion
+     */
     @Override
     public ProcesoElemento procesarMedicion(ProcesoElemento proceso, float altura, float ancho, float peso) {
         ArrayList<Float> lstErrores = new ArrayList<>();
@@ -94,6 +119,11 @@ public class SodaProcessPlugin implements IProductProcessPlugin{
         return proceso;
     }
 
+    /**
+     * Compara los valores reales e ideales
+     * @param product producto que contiene la informacion
+     * @return lista con errores en la medicion del producto
+     */
     @Override
     public ArrayList<Float> compararValores(ItemMedicionElemento product) {
         ArrayList<Float> lstErrores = new ArrayList<>();
@@ -118,6 +148,10 @@ public class SodaProcessPlugin implements IProductProcessPlugin{
         return lstErrores;
     }
 
+    /**
+     * Define los valores ideales para un producto soda y los agrega a una lista
+     * @return lista con valores ideales del producto soda
+     */
     @Override
     public ArrayList<Float> cargarValoresIdeales() {
         ArrayList<Float> lstValoresIdeales = new ArrayList<>();
