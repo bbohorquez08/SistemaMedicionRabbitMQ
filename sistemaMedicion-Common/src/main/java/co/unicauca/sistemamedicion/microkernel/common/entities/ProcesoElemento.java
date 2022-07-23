@@ -1,29 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.unicauca.sistemamedicion.microkernel.common.entities;
 
 /**
  *
- * @author mfcaicedo
+ * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
 public class ProcesoElemento {
-    
     /*Atributos*/
     private ItemMedicionElemento elemento;
     private String idProcess;
-    
-    
-    //COSNTRUCTORES
+       
+    /**
+     * Constructor sin parametros
+     */
     public ProcesoElemento(){}
-    
+    /**
+     * Constructor con parametros
+     * @param elemento 
+     * @param idProcess 
+     */
     public ProcesoElemento(ItemMedicionElemento elemento, String idProcess){
         this.elemento = elemento;
         this.idProcess = idProcess;
     }
     
-    //GETTERS AND SETTERS
+    /**
+     * Getters ans Setters
+     */
     public ItemMedicionElemento getElemento() {
         return elemento;
     }
@@ -39,8 +41,4 @@ public class ProcesoElemento {
     public void setIdProcess(String idProcess) {
         this.idProcess = idProcess;
     }
-    
-    //METODOS U OPERACIONES
-
-    
 }

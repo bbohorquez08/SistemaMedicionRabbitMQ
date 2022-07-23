@@ -12,19 +12,16 @@ import java.util.ArrayList;
 
 /**
  *
- * @author eri-k
+ * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
 public interface IProductProcessPlugin {
-    //revisar que devuelve cada metodo
-    ItemMedicionElemento recoleccionDatos(ItemMedicionElemento product,
-            float altura, float ancho, float peso);
+    ItemMedicionElemento recoleccionDatos(ItemMedicionElemento product,float altura, float ancho, float peso);
     void transformacionDatos();
     boolean clasificacionElemento(ArrayList<Float> lstComparaciones);
     void definirAccion();
     Sensor leerSensor(Sensor sensor);
     public ArrayList<Float> analisisDatos(ItemMedicionElemento product);
-    ProcesoElemento procesarMedicion(ProcesoElemento proceso,
-            float altura, float ancho, float peso);
+    ProcesoElemento procesarMedicion(ProcesoElemento proceso,float altura, float ancho, float peso);
     public ArrayList<Float> compararValores(ItemMedicionElemento product);
     public ArrayList<Float> cargarValoresIdeales();
 }

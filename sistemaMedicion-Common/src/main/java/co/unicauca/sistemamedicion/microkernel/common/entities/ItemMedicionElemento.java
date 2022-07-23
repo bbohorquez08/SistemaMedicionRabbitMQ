@@ -22,7 +22,7 @@ public class ItemMedicionElemento {
     private ArrayList<Float> lstValoresReales;
     private ArrayList<Float> lstValoresIdeales;
     /**
-     * Constructor 
+     * Constructor sin parametros
      */
     public ItemMedicionElemento(){
         lstSensores = new  ArrayList<>();
@@ -30,6 +30,12 @@ public class ItemMedicionElemento {
         lstValoresReales = new  ArrayList<>();
         lstValoresIdeales = new  ArrayList<>();
     }
+    /**
+     * Constructor con parametros
+     * @param tipo tipo del producto
+     * @param referencia referencia asociada al producto
+     * @param nombre nombre del producto
+     */
     public ItemMedicionElemento(String tipo, String referencia, String nombre){
         this.tipo = tipo;
         this.referencia = referencia; 
@@ -131,7 +137,7 @@ public class ItemMedicionElemento {
     }
     
     /**
-     * Métodos 
+     * Métodos u operaciones
      */    
     public boolean comprobarCalidad(){
         return false; 

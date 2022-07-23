@@ -9,7 +9,7 @@ import java.util.Properties;
 
 /**
  *
- * @author eri-k
+ * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
 public interface IPublisherPlugin {
     public void publish(String msg);

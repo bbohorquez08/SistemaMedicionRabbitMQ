@@ -2,32 +2,24 @@ package co.unicauca.sistemamedicion.microkernel.common.entities;
 
 /**
  *
- * @author Milthon F Caicedo 
+ * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
 public class Actuador {
-    
+       
     /**
-     * Atributos 
-     */
-    
-    /**
-     * Constructor 
+     * Constructor sin parametros
      */
     public Actuador(){
-        
     }
+    /**
+    * Clasificación del artículo. 
+    */
+    public void clasificarArticulo(){
+    }
+    
     /**
     * Ejecuta la acción según la clasificación del elemento. 
     */
-    public void clasificarArticulo(){
-        
-    }
-     /**
-     * Clasificación del artículo. 
-     */
     public void ejecutarAccion(){
-        
     }
-   
-    
 }

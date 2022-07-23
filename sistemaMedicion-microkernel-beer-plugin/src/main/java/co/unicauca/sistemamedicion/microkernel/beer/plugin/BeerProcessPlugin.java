@@ -56,11 +56,11 @@ public class BeerProcessPlugin implements IProductProcessPlugin {
     
     /**
      * Recolecta los datos por medio del sensor
-     * @param elemento
+     * @param elemento producto a medir
      * @param altura altura del producto
      * @param ancho ancho del producto
      * @param peso peso del producto
-     * @return
+     * @return el producto con los datos recolectados
      */
     @Override
     public ItemMedicionElemento recoleccionDatos(ItemMedicionElemento elemento, 
