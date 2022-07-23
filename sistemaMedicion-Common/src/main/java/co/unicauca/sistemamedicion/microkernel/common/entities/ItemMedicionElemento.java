@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.common.entities;
 
 import java.util.ArrayList;
 
 /**
  *
- * @author Milthon F Caicedo 
+ * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
 public class ItemMedicionElemento {
-    
     /**
      * Atributos 
      */
@@ -46,8 +40,7 @@ public class ItemMedicionElemento {
         lstValoresIdeales = new  ArrayList<>();
     }
     /**
-     * Geters and setters
-     * @return 
+     * Geters and setterss
      */
     public String getTipo() {
         return tipo;
@@ -137,18 +130,12 @@ public class ItemMedicionElemento {
         this.nombre = nombre;
     }
     
-    
-    
-    
     /**
-     * Métods 
-     */
-    
+     * Métodos 
+     */    
     public boolean comprobarCalidad(){
         return false; 
     }
-    public void obtenerDatos(){
-        
-    }
-    
+    public void obtenerDatos(){        
+    }    
 }

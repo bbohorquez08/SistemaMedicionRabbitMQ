@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.sistemamedicion.microkernel.beer.plugin;
 
 import co.unicauca.sistemamedicion.microkernel.common.entities.ItemMedicionElemento;
 
 /**
  *
- * @author eri-k
+ * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
 public class Beer extends ItemMedicionElemento {
     /*
@@ -27,6 +22,10 @@ public class Beer extends ItemMedicionElemento {
     }
     public Beer(){}
 
+    /**
+     *
+     * @Getters and Setters
+     */
     public float getAltura() {
         return altura;
     }
@@ -51,11 +50,8 @@ public class Beer extends ItemMedicionElemento {
         this.peso = peso;
     }
     
-    
-    
     @Override
-    public boolean comprobarCalidad(){
-        
+    public boolean comprobarCalidad(){        
         return false; 
     }
     @Override

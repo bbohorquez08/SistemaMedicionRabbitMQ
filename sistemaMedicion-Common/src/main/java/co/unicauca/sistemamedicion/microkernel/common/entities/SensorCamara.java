@@ -24,10 +24,6 @@ public class SensorCamara extends Sensor{
         elemento.setAltura(altura);
         elemento.setAncho(ancho);
         elemento.setPeso(peso);
-       
-        
-        
-        
         return elemento;
     }
 }
