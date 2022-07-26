@@ -24,14 +24,14 @@ import javax.swing.table.TableColumn;
  *
  * @author mfcaicedo, bbohorquez, elcamacho, yavigutierrez, juanjosz
  */
-public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
+public class MeasurementOffice extends javax.swing.JFrame implements ISubscriber {
 
     DefaultListModel modelList;
     ServiceProcessProduct objService;
     /**
      * Creates new form DeliveryOffice
      */
-    public DeliveryOffice() {
+    public MeasurementOffice() {
         initComponents();
         Runnable subscriber = new RabbitListener(this);
         this.objService = new ServiceProcessProduct();
@@ -101,27 +101,28 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MeasurementOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MeasurementOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MeasurementOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MeasurementOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DeliveryOffice delivery = new DeliveryOffice();
+                MeasurementOffice delivery = new MeasurementOffice();
                 delivery.setVisible(true);
                 //Cargamos la información de la base de datos
                 try {
                     delivery.obtenerMediciones();
 
                 } catch (SQLException ex) {
-                    Logger.getLogger(DeliveryOffice.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MeasurementOffice.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -149,7 +150,7 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
                 JOptionPane.showMessageDialog(this,"Error al insertar la medición a la db", "Insertar Medición", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DeliveryOffice.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MeasurementOffice.class.getName()).log(Level.SEVERE, null, ex);
         }
         //Cargo la tabla con los nuevos valores 
         cargarTabla(partes);
