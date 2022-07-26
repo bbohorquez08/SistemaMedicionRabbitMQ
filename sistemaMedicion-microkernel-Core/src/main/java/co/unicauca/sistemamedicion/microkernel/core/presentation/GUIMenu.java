@@ -6,6 +6,8 @@
 package co.unicauca.sistemamedicion.microkernel.core.presentation;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -101,6 +103,11 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenu6.setText("Ayuda");
 
         jMenuItemAyuda.setText("Ayuda");
+        jMenuItemAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAyudaActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItemAyuda);
 
         jMenuBar2.add(jMenu6);
@@ -139,6 +146,12 @@ public class GUIMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItemSalirActionPerformed
+
+    private void jMenuItemAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAyudaActionPerformed
+        // TODO add your handling code here:
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "Porfavor rellene los campos de medición para realizar\nla consulta");
+    }//GEN-LAST:event_jMenuItemAyudaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopEscritorio;
