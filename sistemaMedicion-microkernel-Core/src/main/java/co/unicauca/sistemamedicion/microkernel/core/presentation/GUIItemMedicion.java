@@ -247,6 +247,7 @@ public class GUIItemMedicion extends javax.swing.JInternalFrame {
             publisher.publish(info);
             
             limpiarCampos();
+            JOptionPane.showMessageDialog(this, "Producto enviado con éxito", "Correcto", JOptionPane.INFORMATION_MESSAGE);
             
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(this, "No fue posible realizar el proceso al producto", "Error", JOptionPane.ERROR_MESSAGE);

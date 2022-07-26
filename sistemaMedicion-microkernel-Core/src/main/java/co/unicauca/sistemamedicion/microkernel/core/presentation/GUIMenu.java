@@ -127,7 +127,6 @@ public class GUIMenu extends javax.swing.JFrame {
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
 
     }//GEN-LAST:event_jMenu3ActionPerformed
-
     /**
      * accion para iniciar la simulacion 
      * @param evt 
